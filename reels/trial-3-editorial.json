@@ -1,0 +1,173 @@
+{
+ "music": {
+  "file": "audio/longdark.mp3",
+  "startFrom": 0,
+  "volume": 0.9
+ },
+ "scenes": [
+  {
+   "type": "flicker",
+   "frames": 90,
+   "every": 4,
+   "images": [
+    "img/in_commuters.jpg",
+    "img/in_kolkata.jpg",
+    "img/in_chai.jpg",
+    "img/in_kolkata2.jpg",
+    "img/in_citytrain.jpg"
+   ],
+   "words": [
+    "Man up.",
+    "Don't cry.",
+    "Be strong."
+   ]
+  },
+  {
+   "type": "text",
+   "frames": 70,
+   "lines": [
+    {
+     "text": "He heard it",
+     "at": 0
+    },
+    {
+     "text": "his whole life.",
+     "at": 22
+    }
+   ],
+   "media": "vid/local.mp4",
+   "from": 4
+  },
+  {
+   "type": "text",
+   "frames": 60,
+   "bg": "light",
+   "lines": [
+    {
+     "text": "So he learned",
+     "at": 0
+    },
+    {
+     "text": "to stay quiet.",
+     "at": 20,
+     "italic": true
+    }
+   ]
+  },
+  {
+   "type": "text",
+   "frames": 70,
+   "lines": [
+    {
+     "text": "\"It's fine.\"",
+     "at": 0
+    },
+    {
+     "text": "\"I'm fine.\"",
+     "at": 28
+    }
+   ],
+   "media": "img/in_traintravel.jpg"
+  },
+  {
+   "type": "number",
+   "frames": 135,
+   "big": "1,25,449",
+   "bigSize": 200,
+   "caption": "Men in India died by suicide in 2024. Nearly 3 in every 4 suicides.",
+   "source": "Source: NCRB, Accidental Deaths & Suicides in India 2024",
+   "count": true,
+   "wipeIn": "up"
+  },
+  {
+   "type": "number",
+   "frames": 75,
+   "big": "343",
+   "caption": "Men, every day.",
+   "count": true
+  },
+  {
+   "type": "text",
+   "frames": 90,
+   "lines": [
+    {
+     "text": "Men feel as much.",
+     "at": 0
+    },
+    {
+     "text": "They say less.",
+     "at": 40,
+     "italic": true
+    }
+   ],
+   "media": "img/site_ceo-window.jpg"
+  },
+  {
+   "type": "punch",
+   "frames": 100,
+   "wipeIn": "left",
+   "words": [
+    "Talk.",
+    "To a friend.",
+    "To your brother.",
+    "To someone."
+   ]
+  },
+  {
+   "type": "collage",
+   "frames": 180,
+   "items": [
+    {
+     "image": "img/in_fatherson.jpg",
+     "text": "To the father."
+    },
+    {
+     "image": "img/in_chai.jpg",
+     "text": "To the one up before sunrise."
+    },
+    {
+     "image": "img/in_localtrain.jpg",
+     "text": "To the one on the 8:12 local."
+    },
+    {
+     "image": "img/in_sikh.jpg",
+     "text": "To the one everyone leans on."
+    },
+    {
+     "image": "img/in_metro.jpg",
+     "text": "To the friend who's always \"fine.\""
+    }
+   ]
+  },
+  {
+   "type": "echo",
+   "frames": 90,
+   "lead": "Strong men",
+   "word": "talk."
+  },
+  {
+   "type": "hold",
+   "frames": 210,
+   "lines": [
+    "Call him today.",
+    "Ask twice.",
+    "Then listen."
+   ],
+   "media": "vid/rain_vayu.mp4",
+   "from": 2
+  },
+  {
+   "type": "end",
+   "frames": 150,
+   "title": "HisMind",
+   "subtitle": "International Men's Day · 19 November",
+   "small": [
+    "Not sure who to talk to? Book your clarity call.",
+    "hismind.in",
+    "Need help right now? Tele-MANAS: 14416 (free, 24×7)"
+   ],
+   "wipeIn": "up"
+  }
+ ],
+ "_idea": "Trial 3 · Editorial — the full HisMind story: flicker hook, the numbers, collage, echo stack. Now with video, readable text, pop-ins and sound effects. ~44s."
+}

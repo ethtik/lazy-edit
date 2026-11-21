@@ -1,0 +1,166 @@
+{
+ "music": {
+  "file": "audio/longdark.mp3",
+  "startFrom": 0,
+  "volume": 0.9
+ },
+ "scenes": [
+  {
+   "type": "flicker",
+   "frames": 90,
+   "every": 4,
+   "images": [
+    "img/in_commuters.jpg",
+    "img/in_kolkata.jpg",
+    "img/in_chai.jpg",
+    "img/in_kolkata2.jpg",
+    "img/in_citytrain.jpg"
+   ],
+   "words": [
+    "Man up.",
+    "Don't cry.",
+    "Be strong."
+   ]
+  },
+  {
+   "type": "text",
+   "frames": 70,
+   "image": "img/in_citytrain.jpg",
+   "lines": [
+    {
+     "text": "He heard it",
+     "at": 0
+    },
+    {
+     "text": "his whole life.",
+     "at": 22
+    }
+   ]
+  },
+  {
+   "type": "text",
+   "frames": 60,
+   "bg": "light",
+   "lines": [
+    {
+     "text": "So he learned",
+     "at": 0
+    },
+    {
+     "text": "to stay quiet.",
+     "at": 20,
+     "italic": true
+    }
+   ]
+  },
+  {
+   "type": "text",
+   "frames": 70,
+   "image": "img/in_traintravel.jpg",
+   "lines": [
+    {
+     "text": "\"It's fine.\"",
+     "at": 0
+    },
+    {
+     "text": "\"I'm fine.\"",
+     "at": 28
+    }
+   ]
+  },
+  {
+   "type": "number",
+   "frames": 135,
+   "big": "1,25,449",
+   "bigSize": 200,
+   "caption": "men in India died by suicide in 2024. Nearly 3 in every 4 suicides.",
+   "source": "Source: NCRB, Accidental Deaths & Suicides in India 2024",
+   "count": true,
+   "wipeIn": "up"
+  },
+  {
+   "type": "number",
+   "frames": 75,
+   "big": "343",
+   "caption": "men. Every single day.",
+   "count": true
+  },
+  {
+   "type": "text",
+   "frames": 90,
+   "image": "img/site_ceo-window.jpg",
+   "lines": [
+    {
+     "text": "Not because they feel less.",
+     "at": 0
+    },
+    {
+     "text": "Because they say less.",
+     "at": 40,
+     "italic": true
+    }
+   ]
+  },
+  {
+   "type": "flood",
+   "frames": 110,
+   "word": "Talk.",
+   "finalLine": "Talk.",
+   "wipeIn": "left"
+  },
+  {
+   "type": "collage",
+   "frames": 180,
+   "items": [
+    {
+     "image": "img/in_fatherson.jpg",
+     "text": "To the father."
+    },
+    {
+     "image": "img/in_chai.jpg",
+     "text": "To the one up before sunrise."
+    },
+    {
+     "image": "img/in_localtrain.jpg",
+     "text": "To the one on the 8:12 local."
+    },
+    {
+     "image": "img/in_sikh.jpg",
+     "text": "To the one everyone leans on."
+    },
+    {
+     "image": "img/in_metro.jpg",
+     "text": "To the friend who's always \"fine.\""
+    }
+   ]
+  },
+  {
+   "type": "echo",
+   "frames": 90,
+   "lead": "Strong men",
+   "word": "talk."
+  },
+  {
+   "type": "hold",
+   "frames": 210,
+   "image": "img/site_walk.jpg",
+   "lines": [
+    "Call him today.",
+    "Ask twice.",
+    "Then just listen."
+   ]
+  },
+  {
+   "type": "end",
+   "frames": 150,
+   "title": "HisMind",
+   "subtitle": "International Men's Day · 19 November",
+   "small": [
+    "Not sure who to talk to? That's the first call.",
+    "hismind.in",
+    "Need help right now? Tele-MANAS: 14416 (free, 24×7)"
+   ],
+   "wipeIn": "up"
+  }
+ ]
+}

@@ -1,0 +1,134 @@
+{
+ "_idea": "HisMind launch: men holding it together in film scenes, a silent beat, someone listens, then the rise and the reveal. Music: Zimmer 'Time', cut so the peak lands on the rise and the drop lands on the end card.",
+ "music": {
+  "file": "audio/time.mp3",
+  "startFrom": 5664,
+  "volume": 1
+ },
+ "scenes": [
+  {
+   "type": "clips",
+   "frames": 245,
+   "flash": true,
+   "items": [
+    {
+     "media": "vid/launch/tommy.mp4",
+     "from": 21,
+     "frames": 40,
+     "text": "He runs the room."
+    },
+    {
+     "media": "vid/launch/joker.mp4",
+     "from": 36,
+     "frames": 40
+    },
+    {
+     "media": "vid/launch/pursuit.mp4",
+     "from": 66,
+     "frames": 45,
+     "text": "He holds it together."
+    },
+    {
+     "media": "vid/launch/interstellar.mp4",
+     "from": 125,
+     "frames": 45
+    },
+    {
+     "media": "vid/launch/thor.mp4",
+     "from": 68,
+     "frames": 40,
+     "text": "He says he's fine."
+    },
+    {
+     "media": "vid/launch/tzp.mp4",
+     "from": 166,
+     "frames": 35
+    }
+   ]
+  },
+  {
+   "type": "text",
+   "frames": 75,
+   "bg": "dark",
+   "lines": [
+    {
+     "text": "Who checks on him?"
+    }
+   ]
+  },
+  {
+   "type": "clips",
+   "frames": 105,
+   "items": [
+    {
+     "media": "vid/launch/willhunting.mp4",
+     "from": 180,
+     "frames": 50,
+     "text": "Someone has to ask."
+    },
+    {
+     "media": "vid/launch/willhunting.mp4",
+     "from": 197,
+     "frames": 55
+    }
+   ]
+  },
+  {
+   "type": "clips",
+   "frames": 225,
+   "flash": true,
+   "items": [
+    {
+     "media": "vid/launch/rocky.mp4",
+     "from": 72,
+     "frames": 30
+    },
+    {
+     "media": "vid/launch/apnatime.mp4",
+     "from": 40,
+     "frames": 30
+    },
+    {
+     "media": "vid/launch/rocky.mp4",
+     "from": 130,
+     "frames": 30
+    },
+    {
+     "media": "vid/launch/apnatime.mp4",
+     "from": 70,
+     "frames": 30
+    },
+    {
+     "media": "vid/launch/idiots.mp4",
+     "from": 121,
+     "frames": 30
+    },
+    {
+     "media": "vid/launch/balboa.mp4",
+     "from": 188,
+     "frames": 35,
+     "text": "Strong men"
+    },
+    {
+     "media": "vid/launch/rocky.mp4",
+     "from": 137,
+     "frames": 40,
+     "text": "talk."
+    }
+   ],
+   "style": "serif"
+  },
+  {
+   "type": "logo",
+   "frames": 75,
+   "tag": "is live."
+  },
+  {
+   "type": "end",
+   "frames": 150,
+   "title": "HisMind",
+   "wipeIn": "up",
+   "subtitle": "Now live · hismind.in"
+  }
+ ]
+}

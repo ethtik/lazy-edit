@@ -1,0 +1,72 @@
+{
+ "_idea": "Trial 1 · 'Dear men' — one quiet question in bold capitals over moody footage, typed out letter by letter. Short (16s), like the forest reference.",
+ "music": {
+  "file": "audio/meekness.mp3",
+  "startFrom": 0,
+  "volume": 0.85
+ },
+ "scenes": [
+  {
+   "type": "text",
+   "frames": 150,
+   "media": "vid/rain_tvm.mp4",
+   "style": "caps",
+   "anim": "type",
+   "lines": [
+    {
+     "text": "Dear men,",
+     "at": 0,
+     "size": 110
+    },
+    {
+     "text": "when did someone last",
+     "at": 22
+    },
+    {
+     "text": "ask how you're doing?",
+     "at": 58
+    }
+   ]
+  },
+  {
+   "type": "text",
+   "frames": 120,
+   "media": "vid/street3.mp4",
+   "from": 6,
+   "style": "caps",
+   "anim": "type",
+   "lines": [
+    {
+     "text": "And did you",
+     "at": 0
+    },
+    {
+     "text": "tell the truth?",
+     "at": 28,
+     "accent": true,
+     "size": 120
+    }
+   ]
+  },
+  {
+   "type": "hold",
+   "frames": 90,
+   "media": "vid/train_cst.mp4",
+   "lines": [
+    "Strong men talk."
+   ]
+  },
+  {
+   "type": "end",
+   "frames": 120,
+   "wipeIn": "up",
+   "title": "HisMind",
+   "subtitle": "International Men's Day · 19 November",
+   "small": [
+    "Not sure who to talk to? Book your clarity call.",
+    "hismind.in",
+    "Need help right now? Tele-MANAS: 14416 (free, 24×7)"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,23 @@
+{
+  "name": "reel-maker",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "studio": "remotion studio src/index.ts",
+    "render": "remotion render src/index.ts Reel out/reel.mp4",
+    "virat": "remotion render src/index.ts Virat-Square-916 out/HisMind-Virat-Square.mp4",
+    "virat:preview": "remotion render src/index.ts Virat-Square-916 out/preview.mp4 --scale=0.5 --video-bitrate=3M",
+    "virat:range": "remotion render src/index.ts Virat-Square-916 out/range.mp4 --frames",
+    "virat:short": "remotion render src/index.ts Virat-Short-916 out/HisMind-Virat-Short.mp4"
+  },
+  "dependencies": {
+    "remotion": "4.0.539",
+    "@remotion/cli": "4.0.539",
+    "react": "19.1.0",
+    "react-dom": "19.1.0"
+  },
+  "devDependencies": {
+    "typescript": "5.9.2",
+    "@types/react": "19.1.12"
+  }
+}

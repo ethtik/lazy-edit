@@ -1,0 +1,95 @@
+{
+ "_idea": "Trial 2 · 'We say we're fine' — fast cuts between real Indian street footage with subtitle captions, like the TV-clip reference. A white flash on each cut. ~27s.",
+ "music": {
+  "file": "audio/zabriskie.mp3",
+  "startFrom": 0,
+  "volume": 0.8
+ },
+ "scenes": [
+  {
+   "type": "clips",
+   "frames": 255,
+   "flash": true,
+   "items": [
+    {
+     "media": "vid/local.mp4",
+     "from": 2,
+     "frames": 60,
+     "text": "We say we're fine."
+    },
+    {
+     "media": "vid/street2.mp4",
+     "from": 3,
+     "frames": 60,
+     "text": "We say we're busy."
+    },
+    {
+     "media": "vid/rain_vayu.mp4",
+     "from": 4,
+     "frames": 65,
+     "text": "We keep it to ourselves."
+    },
+    {
+     "media": "vid/ghat.mp4",
+     "from": 0,
+     "frames": 70,
+     "text": "And carry it alone."
+    }
+   ]
+  },
+  {
+   "type": "number",
+   "frames": 120,
+   "wipeIn": "up",
+   "big": "343",
+   "count": true,
+   "caption": "Men in India die by suicide every single day.",
+   "source": "Source: NCRB, Accidental Deaths & Suicides in India 2024"
+  },
+  {
+   "type": "clips",
+   "frames": 165,
+   "flash": true,
+   "items": [
+    {
+     "media": "vid/train_cst.mp4",
+     "from": 1,
+     "frames": 55,
+     "text": "One call is enough."
+    },
+    {
+     "media": "vid/ghum.mp4",
+     "from": 2,
+     "frames": 55,
+     "text": "Bring the mess."
+    },
+    {
+     "media": "vid/local.mp4",
+     "from": 20,
+     "frames": 55,
+     "text": "We'll find the words with you."
+    }
+   ]
+  },
+  {
+   "type": "hold",
+   "frames": 90,
+   "media": "img/site_walk.jpg",
+   "lines": [
+    "Strong men talk."
+   ]
+  },
+  {
+   "type": "end",
+   "frames": 150,
+   "wipeIn": "up",
+   "title": "HisMind",
+   "subtitle": "International Men's Day · 19 November",
+   "small": [
+    "Not sure who to talk to? Book your clarity call.",
+    "hismind.in",
+    "Need help right now? Tele-MANAS: 14416 (free, 24×7)"
+   ]
+  }
+ ]
+}

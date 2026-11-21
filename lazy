@@ -1,0 +1,103 @@
+#!/usr/bin/env python3
+"""lazy-edit: turn interview audio + real footage into a cinematic, match-cut reel.
+
+Run `./lazy <step> -h` for options. The usual order:
+  fetch -> transcribe -> voice -> vo -> beats -> prep -> (edit PLAN in match-cut.py) -> cut -> check -> draft -> render -> cover
+"""
+import argparse, json, os, subprocess, sys
+ROOT = os.path.dirname(os.path.abspath(__file__)); os.chdir(ROOT)
+PY = sys.executable
+DEMUCS = os.path.join(ROOT, '.demucs', 'bin', 'python')
+
+
+def run(*cmd, **kw):
+    print('$', ' '.join(str(c) for c in cmd)); r = subprocess.run([str(c) for c in cmd], **kw)
+    if r.returncode: sys.exit(r.returncode)
+    return r
+
+
+def fetch(a):
+    """Download real footage. Checks resolution and length first, and can grab just a section."""
+    out = f'public/vid/{a.folder}'; os.makedirs(out, exist_ok=True)
+    for src in a.sources:
+        info = json.loads(subprocess.run(['yt-dlp', '-J', '--no-playlist', src], capture_output=True, text=True).stdout or '{}')
+        if info.get('_type') == 'playlist': info = (info.get('entries') or [{}])[0]
+        h = max((f.get('height') or 0 for f in info.get('formats', [])), default=0)
+        name = a.name or info.get('id', 'clip')
+        print(f"{name}: {info.get('title', '?')[:70]} | {h}p | {info.get('duration', 0)}s")
+        if h < a.min_height:
+            print(f'  skipped: below {a.min_height}p'); continue
+        cmd = ['yt-dlp', '--no-playlist', '-S', 'res:1080,vcodec:avc,br', '-f', 'bv*', '-o', f'{out}/{name}.%(ext)s',
+               '--remux-video', 'mp4', info.get('webpage_url', src)]
+        if a.section: cmd[1:1] = ['--download-sections', f'*{a.section}']
+        run(*cmd)
+
+
+def transcribe(a):
+    """Word-timed transcript (Whisper) of an interview clip -> public/audio/<folder>/<id>.json + .wav"""
+    for f in a.files:
+        n = os.path.splitext(os.path.basename(f))[0]; d = f'public/audio/{a.folder}'; os.makedirs(d, exist_ok=True)
+        run('ffmpeg', '-v', 'error', '-y', '-i', f, '-vn', '-ac', '1', '-ar', '16000', f'{d}/{n}.wav')
+        run('whisper', f'{d}/{n}.wav', '--model', a.model, '--language', 'en', '--word_timestamps', 'True',
+            '--output_format', 'json', '--output_dir', d)
+
+
+def voice(a):
+    """Strip music from under a voice with Demucs -> <id>-voice.wav (list the id in VOICE_ONLY in vo-build.py)."""
+    if not os.path.exists(DEMUCS):
+        run('python3.14', '-m', 'venv', '.demucs'); run(DEMUCS, '-m', 'pip', 'install', '-q', 'demucs', 'soundfile')
+    for f in a.files:
+        n = os.path.splitext(os.path.basename(f))[0]; tmp = 'reels/.sep'
+        run(DEMUCS, '-m', 'demucs', '--two-stems=vocals', '-n', 'htdemucs', '-o', tmp, f)
+        os.replace(f'{tmp}/htdemucs/{n}/vocals.wav', os.path.join(os.path.dirname(f), f'{n}-voice.wav'))
+        print('voice only ->', os.path.join(os.path.dirname(f), f'{n}-voice.wav'))
+
+
+def sfx(a):
+    """Make the hook transition sounds: a swell through the black and a low cinematic boom."""
+    d = 'public/audio/sfx'; os.makedirs(d, exist_ok=True)
+    run('ffmpeg', '-v', 'error', '-y', '-f', 'lavfi', '-i',
+        "aevalsrc='0.85*sin(2*PI*(32*t+(70/5)*(1-exp(-5*t))))*exp(-1.8*t)+0.35*(random(0)*2-1)*exp(-35*t)':s=48000:d=2.5",
+        '-af', 'lowpass=f=900,aecho=0.8:0.5:60|120:0.3|0.2,afade=t=out:st=1.8:d=0.7,volume=1.3,alimiter=limit=0.95', '-ac', '2', f'{d}/impact.wav')
+    run('ffmpeg', '-v', 'error', '-y', '-f', 'lavfi', '-i', "aevalsrc='(random(0)*2-1)*pow(t/0.9\\,3)*0.6':s=48000:d=0.9",
+        '-af', 'highpass=f=250,lowpass=f=5000,afade=t=in:d=0.2', '-ac', '2', f'{d}/swell.wav')
+
+
+COMP = {'full': ('Virat-Square-916', 'out/HisMind-Virat-Square.mp4'), 'short': ('Virat-Short-916', 'out/HisMind-Virat-Short.mp4')}
+
+
+def render(a):
+    comp, out = COMP[a.cut]
+    extra = ['--scale=0.5', '--video-bitrate=3M'] if a.preview else []
+    if a.frames: extra += [f'--frames={a.frames}']
+    if a.preview or a.frames: out = out.replace('.mp4', '-preview.mp4')
+    run('npx', 'remotion', 'render', 'src/index.ts', comp, out, *extra)
+
+
+def main():
+    p = argparse.ArgumentParser(prog='lazy', description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    s = p.add_subparsers(dest='step', required=True)
+    x = s.add_parser('fetch', help='download footage (checks quality first)')
+    x.add_argument('folder', help='subfolder of public/vid'); x.add_argument('sources', nargs='+', help='YouTube links or "ytsearch1:query"')
+    x.add_argument('--name'); x.add_argument('--section', help='only this part, e.g. 2:10-2:40'); x.add_argument('--min-height', type=int, default=1080)
+    x.set_defaults(f=fetch)
+    x = s.add_parser('transcribe', help='word-timed Whisper transcript'); x.add_argument('folder'); x.add_argument('files', nargs='+')
+    x.add_argument('--model', default='small'); x.set_defaults(f=transcribe)
+    x = s.add_parser('voice', help='remove music under a voice (Demucs)'); x.add_argument('files', nargs='+'); x.set_defaults(f=voice)
+    s.add_parser('sfx', help='make the swell + boom').set_defaults(f=sfx)
+    s.add_parser('vo', help='build the voiceover from vo-build.py SEGS').set_defaults(f=lambda a: run(PY, 'vo-build.py'))
+    s.add_parser('beats', help='beat grid of the music').set_defaults(f=lambda a: run(PY, 'beats.py'))
+    x = s.add_parser('prep', help='proxies, motion + cut scans, take sheets'); x.add_argument('clips', nargs='*')
+    x.set_defaults(f=lambda a: run('./prep.sh', *a.clips))
+    s.add_parser('cut', help='build the match-cut shot list from PLAN').set_defaults(f=lambda a: run(PY, 'match-cut.py'))
+    s.add_parser('check', help='fail if any source frame plays twice').set_defaults(f=lambda a: run(PY, 'check-repeats.py'))
+    s.add_parser('draft', help='2-second rough cut to check picks').set_defaults(f=lambda a: run(PY, 'draft.py'))
+    x = s.add_parser('render', help='Remotion render, Instagram spec'); x.add_argument('cut', choices=list(COMP), nargs='?', default='full')
+    x.add_argument('--preview', action='store_true', help='half size'); x.add_argument('--frames', help='e.g. 1200-1500'); x.set_defaults(f=render)
+    s.add_parser('cover', help='render the cover still').set_defaults(
+        f=lambda a: run('npx', 'remotion', 'still', 'src/index.ts', 'Virat-Cover', 'out/HisMind-Virat-Cover.png'))
+    a = p.parse_args(); a.f(a)
+
+
+if __name__ == '__main__':
+    main()
